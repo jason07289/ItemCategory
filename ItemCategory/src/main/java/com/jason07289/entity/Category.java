@@ -27,13 +27,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name="Category")
 public class Category {//entity to DB table
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long categoryId;
+    private Long categoryId;
 	
-	@Column(name = "categoryName")
+	@Column(name = "categoryName",nullable = false, unique = true)
 	private String categoryName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

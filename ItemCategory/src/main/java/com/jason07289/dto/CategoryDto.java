@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CategoryDto {
-	private long categoryId;
+	private Long categoryId;
 	private String categoryName;
 	private String parentCategoryName;
 	private Integer level;
