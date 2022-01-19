@@ -21,4 +21,11 @@ public interface CategoryService {
 	 */
 	public Map<String, CategoryDto> getCategoryByCategoryName(String name);
 	
+	/**
+	 * 카테고리 삭제 (하위 카테고리를 포함할 경우 삭제 불가)
+	 * @param categoryId
+	 */
+	public void deleteCategory(Long categoryId);
+	
+	
 }
