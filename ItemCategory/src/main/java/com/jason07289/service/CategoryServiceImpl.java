@@ -1,5 +1,8 @@
 package com.jason07289.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -17,12 +20,8 @@ import lombok.RequiredArgsConstructor;
 public class CategoryServiceImpl implements CategoryService {
 	private final CategoryRepository categoryRepository;
 	
-	/**
-	 * 
-	 * 카테고리 저장
-	 * @param categoryDto
-	 * @return id
-	 */
+	
+	@Override
 	public Long saveCategory (CategoryDto categoryDto) {
 		Category category = Category.builder()
 				.categoryName(categoryDto.getCategoryName())
@@ -33,13 +32,13 @@ public class CategoryServiceImpl implements CategoryService {
 			 if(categoryRepository.existsByCategoryName(categoryDto.getCategoryName())) {
 				 throw new CategoryException("중복된 카테고리 이름 오류. ");
 			 }
-			 category.setLevel(0);
+			 category.setLevel(1);
 			 categoryRepository.save(category);
 			
 		} else {
 			
 			Category parentCategory = categoryRepository.findByCategoryName(categoryDto.getParentCategoryName())
-					.orElseThrow(() -> new CategoryException("부모카테고리가 존재하지 않습니다."));
+					.orElseThrow(() -> new CategoryException("부모카테고리가 존재하지 않음."));
 			category.setLevel(parentCategory.getLevel()+1);
 			
 			category.setParentCategory(parentCategory);
@@ -48,5 +47,21 @@ public class CategoryServiceImpl implements CategoryService {
 		
 		return categoryRepository.save(category).getCategoryId();
 	}
+	
+	@Override
+	public Map<String, CategoryDto> getCategoryByCategoryName(String name) {
+		
+		Category category = categoryRepository.findByCategoryName(name)
+				.orElseThrow(()-> new CategoryException("해당 카테고리가 존재하지 않음."));
+		
+		CategoryDto categoryDto = new CategoryDto(category);
+		
+		Map <String, CategoryDto> categoryMap = new HashMap<>();
+		categoryMap.put(categoryDto.getCategoryName(), categoryDto);
+		
+		return categoryMap;
+	}
+	
+	
 	
 }

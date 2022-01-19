@@ -22,14 +22,28 @@ class ItemCategoryApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		CategoryDto categoryDto = new CategoryDto();
+		CategoryDto categoryDto = new CategoryDto();// 부모
 		categoryDto.setCategoryName("testCate");
 		categoryDto.setLevel(0);
 		categoryService.saveCategory(categoryDto);
 		
+		
+		categoryDto = new CategoryDto();///자식1
+		categoryDto.setCategoryName("testCate child");
+		categoryDto.setLevel(0);
+		categoryDto.setParentCategoryName("testCate");
+		categoryService.saveCategory(categoryDto);
+		
+		categoryDto = new CategoryDto();///자식2
+		categoryDto.setCategoryName("testCate child2!!");
+		categoryDto.setLevel(0);
+		//categoryDto.setParentCategoryName("testCa");//부모 카테고리 없는 경우
+		categoryDto.setParentCategoryName("testCate");
+		categoryService.saveCategory(categoryDto);
+		
 		System.out.println("##################################");
 		System.out.println("############save 동작 확인###########");
-		System.out.println(categoryRepository.findAll());
+		System.out.println(categoryService.getCategoryByCategoryName("testCate"));
 	}
 
 }
