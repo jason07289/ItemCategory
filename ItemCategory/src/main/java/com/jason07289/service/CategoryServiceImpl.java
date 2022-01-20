@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
 				.level(categoryDto.getLevel())
 				.build();
 		
-		if(categoryDto.getParentCategoryId() == null) {// root category
+		if(categoryDto.getParentCategoryId() == null || categoryDto.getParentCategoryId() == 0 ) {// root category
 			 if(categoryRepository.existsByCategoryName(categoryDto.getCategoryName())) {
 				 throw new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 중복된 카테고리 이름 오류. ");
 			 }
