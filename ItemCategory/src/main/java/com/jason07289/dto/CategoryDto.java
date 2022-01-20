@@ -16,7 +16,7 @@ import lombok.Setter;
 public class CategoryDto {
 	private Long categoryId;
 	private String categoryName;
-	private String parentCategoryName;
+	private Long parentCategoryId;
 	private Integer level;
 	private Map<Long, CategoryDto> subCategory;// Map for JSON
 	
@@ -26,9 +26,9 @@ public class CategoryDto {
 		this.level = category.getLevel();
 		
 		if(category.getParentCategory() == null) {
-			this.parentCategoryName = "Root";
+			this.parentCategoryId = null;
 		} else {
-			this.parentCategoryName = category.getParentCategory().getCategoryName();
+			this.parentCategoryId = category.getParentCategory().getCategoryId();
 		}
 		
 		if(category.getSubCategory() == null) {
@@ -46,8 +46,8 @@ public class CategoryDto {
 
 	@Override
 	public String toString() {
-		return "[categoryId=" + categoryId + ", categoryName=" + categoryName + ", parentCategoryName="
-				+ parentCategoryName + ", level=" + level + ", subCategory=" + subCategory + "]";
+		return "[categoryId=" + categoryId + ", categoryName=" + categoryName + ", parentCategoryId="
+				+ parentCategoryId + ", level=" + level + ", subCategory=" + subCategory + "]";
 	}
 	
 	

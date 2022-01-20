@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
 				.level(categoryDto.getLevel())
 				.build();
 		
-		if(categoryDto.getParentCategoryName() == null) {// root category
+		if(categoryDto.getParentCategoryId() == null) {// root category
 			 if(categoryRepository.existsByCategoryName(categoryDto.getCategoryName())) {
 				 throw new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 중복된 카테고리 이름 오류. ");
 			 }
@@ -37,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 			
 		} else {
 			
-			Category parentCategory = categoryRepository.findByCategoryName(categoryDto.getParentCategoryName())
+			Category parentCategory = categoryRepository.findById(categoryDto.getParentCategoryId())
 					.orElseThrow(() -> new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 부모카테고리가 존재하지 않음."));
 			category.setLevel(parentCategory.getLevel()+1);
 			
@@ -49,15 +49,15 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public Map<String, CategoryDto> getCategoryByCategoryId(Long categoryId) {
+	public Map<Long, CategoryDto> getCategoryByCategoryId(Long categoryId) {
 		
 		Category category = categoryRepository.findById(categoryId)
 				.orElseThrow(()-> new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 해당 카테고리는 존재하지 않음."));
 		
 		CategoryDto categoryDto = new CategoryDto(category);
 		
-		Map <String, CategoryDto> categoryMap = new HashMap<>();
-		categoryMap.put(categoryDto.getCategoryName(), categoryDto);
+		Map <Long, CategoryDto> categoryMap = new HashMap<>();
+		categoryMap.put(categoryDto.getCategoryId(), categoryDto);
 		
 		return categoryMap;
 	}
@@ -67,15 +67,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = categoryRepository.findById(categoryId)
 				.orElseThrow(() -> new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 해당 카테고리는 존재하지 않음."));
 		
-		if(category.getSubCategory().size() == 0) {
-			
-			//부모의 참조관계부터 끊어준다.
-			CategoryDto CategoryDto = new CategoryDto(category);
-			if(!"Root".equals(CategoryDto.getParentCategoryName())) {//현재 카테고리내 부모의 이름이 Root라면 최상위, 최상위 카테고리가 아닐경우
-				Category parentCategory = categoryRepository.findById(category.getParentCategory().getCategoryId())
-						.orElseThrow(() -> new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 부모카테고리가 존재하지 않음."));
-				parentCategory.getSubCategory().remove(category);//부모카테고리의 리스트상에서 카테고리를 지워버린다.
-			}
+		if(category.getSubCategory().size() == 0) {		
 			categoryRepository.deleteById(category.getCategoryId());
 			
 		} else {

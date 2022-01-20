@@ -19,7 +19,7 @@ public interface CategoryService {
 	 * @param name
 	 * @return categoryMap
 	 */
-	public Map<String, CategoryDto> getCategoryByCategoryId(Long categoryId);
+	public Map<Long, CategoryDto> getCategoryByCategoryId(Long categoryId);
 	
 	/**
 	 * 카테고리 삭제 (하위 카테고리를 포함할 경우 삭제 불가)

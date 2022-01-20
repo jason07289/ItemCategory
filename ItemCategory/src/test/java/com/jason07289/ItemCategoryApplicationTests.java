@@ -31,14 +31,14 @@ class ItemCategoryApplicationTests {
 		categoryDto = new CategoryDto();///자식1
 		categoryDto.setCategoryName("testCate child");
 		categoryDto.setLevel(0);
-		categoryDto.setParentCategoryName("testCate");
+		categoryDto.setParentCategoryId((long) 1);
 		categoryService.saveCategory(categoryDto);
 		
 		categoryDto = new CategoryDto();///자식2
 		categoryDto.setCategoryName("testCate child2!!");
 		categoryDto.setLevel(0);
 		//categoryDto.setParentCategoryName("testCa");//부모 카테고리 없는 경우
-		categoryDto.setParentCategoryName("testCate");
+		categoryDto.setParentCategoryId((long) 1);
 		categoryService.saveCategory(categoryDto);
 		
 		System.out.println("##################################");
