@@ -43,14 +43,14 @@ class ItemCategoryApplicationTests {
 		
 		System.out.println("##################################");
 		System.out.println("############save 동작 확인###########");
-		System.out.println(categoryService.getCategoryByCategoryName("testCate"));
+		System.out.println(categoryService.getCategoryByCategoryId((long) 1));
 		
 		
 		
 		categoryService.deleteCategory((long) 2);
 		System.out.println("##################################");
 		System.out.println("############delete 동작 확인###########");
-		System.out.println(categoryService.getCategoryByCategoryName("testCate"));
+		System.out.println(categoryService.getCategoryByCategoryId((long) 1));
 	}
 
 }

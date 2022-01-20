@@ -32,7 +32,7 @@ public class Category {//entity to DB table
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 	
-	@Column(name = "categoryName",nullable = false, unique = true)
+	@Column(name = "categoryName",nullable = false)//이름...
 	private String categoryName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

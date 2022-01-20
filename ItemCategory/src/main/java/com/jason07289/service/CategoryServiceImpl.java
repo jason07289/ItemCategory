@@ -49,9 +49,9 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public Map<String, CategoryDto> getCategoryByCategoryName(String name) {
+	public Map<String, CategoryDto> getCategoryByCategoryId(Long categoryId) {
 		
-		Category category = categoryRepository.findByCategoryName(name)
+		Category category = categoryRepository.findById(categoryId)
 				.orElseThrow(()-> new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 해당 카테고리는 존재하지 않음."));
 		
 		CategoryDto categoryDto = new CategoryDto(category);
@@ -79,7 +79,7 @@ public class CategoryServiceImpl implements CategoryService {
 			categoryRepository.deleteById(category.getCategoryId());
 			
 		} else {
-			throw new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 하위카테고리가 존재하여 삭제 불가.");
+			throw new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 하위카테고리가 존재하여 삭제불가.");
 		}
 		
 	}
