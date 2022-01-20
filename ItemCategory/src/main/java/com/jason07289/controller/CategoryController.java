@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jason07289.dto.CategoryDto;
+import com.jason07289.service.CategoryService;
 import com.jason07289.service.ResponseService;
 
 import io.swagger.annotations.Api;
@@ -29,14 +30,14 @@ import lombok.RequiredArgsConstructor;
 public class CategoryController {
 	
 	private final ResponseService responseService;
-	
+	private final CategoryService categoryService;
 	
 	@ApiOperation("카테고리등록.")
 	@PostMapping(value = "/category")
 	public ResponseEntity<Map<String, Object>> saveCategory(@RequestBody CategoryDto categoryDto) {
 		
 		try {
-			return responseService.handleSuccess(null);
+			return responseService.handleSuccess(categoryService.saveCategory(categoryDto)+" 카테고리 등록 완료.");
 		}catch (Exception e) {
 			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
 		}
@@ -47,7 +48,7 @@ public class CategoryController {
 	public ResponseEntity<Map<String, Object>> getCategoryByCategoryId(@PathVariable Long id) {
 		
 		try {
-			return responseService.handleSuccess(null);
+			return responseService.handleSuccess(categoryService.getCategoryByCategoryId(id));
 		}catch (Exception e) {
 			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
 		}
@@ -69,7 +70,8 @@ public class CategoryController {
 	public ResponseEntity<Map<String, Object>> deleteCategory(@PathVariable Long id) {
 		
 		try {
-			return responseService.handleSuccess(null);
+			categoryService.deleteCategory(id);
+			return responseService.handleSuccess(id+" 카테고리 삭제 완료.");
 		}catch (Exception e) {
 			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
 		}
@@ -80,7 +82,7 @@ public class CategoryController {
 	public ResponseEntity<Map<String, Object>> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
 		
 		try {
-			return responseService.handleSuccess(null);
+			return responseService.handleSuccess(categoryService.updateCategory(id, categoryDto)+" 카테고리 업데이트 완료.");
 		}catch (Exception e) {
 			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
 		}

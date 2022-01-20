@@ -18,7 +18,7 @@ public class CategoryDto {
 	private String categoryName;
 	private String parentCategoryName;
 	private Integer level;
-	private Map<String, CategoryDto> subCategory;// Map to JSON
+	private Map<Long, CategoryDto> subCategory;// Map for JSON
 	
 	public CategoryDto(Category category) {
 		this.categoryId = category.getCategoryId();
@@ -38,7 +38,7 @@ public class CategoryDto {
 			List<Category> categoryList = category.getSubCategory();
 			for(int i=0; i<categoryList.size(); i++) {
 				
-				subCategory.put(categoryList.get(i).getCategoryName(), new CategoryDto(categoryList.get(i)));
+				subCategory.put(categoryList.get(i).getCategoryId(), new CategoryDto(categoryList.get(i)));
 			}
 			
 		}

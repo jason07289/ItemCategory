@@ -27,5 +27,10 @@ public interface CategoryService {
 	 */
 	public void deleteCategory(Long categoryId);
 	
-	
+	/**
+	 * 카테고리 업데이트 
+	 * @param categoryDto
+	 * @return id
+	 */
+	public Long updateCategory(Long categoryId, CategoryDto categoryDto);
 }

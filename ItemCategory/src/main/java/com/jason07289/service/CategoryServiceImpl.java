@@ -83,6 +83,17 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		
 	}
+
+	@Override
+	public Long updateCategory(Long categoryId, CategoryDto categoryDto) {
+		Category category = categoryRepository.findById(categoryId)
+				.orElseThrow(() -> new CategoryException(Thread.currentThread().getStackTrace()[1].getMethodName() + ": 해당 카테고리는 존재하지 않음."));
+		
+        category.setCategoryName(categoryDto.getCategoryName());
+        
+		return categoryRepository.save(category).getCategoryId();
+		
+	}
 	
 	
 	

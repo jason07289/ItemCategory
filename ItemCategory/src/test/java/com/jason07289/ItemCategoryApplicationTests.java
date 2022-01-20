@@ -51,6 +51,14 @@ class ItemCategoryApplicationTests {
 		System.out.println("##################################");
 		System.out.println("############delete 동작 확인###########");
 		System.out.println(categoryService.getCategoryByCategoryId((long) 1));
+		
+		categoryDto = new CategoryDto();// 수정할 category
+		categoryDto.setCategoryName("Updated Parent!");
+		categoryService.updateCategory((long) 1, categoryDto);
+		System.out.println("##################################");
+		System.out.println("############update 동작 확인###########");
+		System.out.println(categoryService.getCategoryByCategoryId((long) 1));
+		
 	}
 
 }
