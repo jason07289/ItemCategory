@@ -8,6 +8,7 @@ public class ItemCategoryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ItemCategoryApplication.class, args);
+		
 	}
 
 }
