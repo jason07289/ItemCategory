@@ -27,6 +27,13 @@ class ItemCategoryApplicationTests {
 		categoryDto.setLevel(0);
 		categoryService.saveCategory(categoryDto);
 		
+		categoryDto = new CategoryDto();// 부모2
+		categoryDto.setCategoryName("testCate2");
+		categoryService.saveCategory(categoryDto);
+		
+		categoryDto = new CategoryDto();// 부모3
+		categoryDto.setCategoryName("testCate3");
+		categoryService.saveCategory(categoryDto);
 		
 		categoryDto = new CategoryDto();///자식1
 		categoryDto.setCategoryName("testCate child");
@@ -39,6 +46,12 @@ class ItemCategoryApplicationTests {
 		categoryDto.setLevel(0);
 		//categoryDto.setParentCategoryName("testCa");//부모 카테고리 없는 경우
 		categoryDto.setParentCategoryId((long) 1);
+		categoryService.saveCategory(categoryDto);
+		
+		categoryDto = new CategoryDto();///자식3
+		categoryDto.setCategoryName("testCate child");
+		categoryDto.setLevel(0);
+		categoryDto.setParentCategoryId((long) 3);
 		categoryService.saveCategory(categoryDto);
 		
 		System.out.println("##################################");
@@ -58,6 +71,11 @@ class ItemCategoryApplicationTests {
 		System.out.println("##################################");
 		System.out.println("############update 동작 확인###########");
 		System.out.println(categoryService.getCategoryByCategoryId((long) 1));
+		
+		
+		System.out.println("##################################");
+		System.out.println("############select 전체 개발###########");
+		System.out.println(categoryService.getAllCategory());
 		
 	}
 

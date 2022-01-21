@@ -39,7 +39,7 @@ public class CategoryController {
 		try {
 			return responseService.handleSuccess(categoryService.saveCategory(categoryDto)+" 카테고리 등록 완료.");
 		}catch (Exception e) {
-			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
+			return responseService.handleFail(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
@@ -50,18 +50,18 @@ public class CategoryController {
 		try {
 			return responseService.handleSuccess(categoryService.getCategoryByCategoryId(id));
 		}catch (Exception e) {
-			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
+			return responseService.handleFail(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
-	@ApiOperation("전체 카테고리조회. dto는 Map구조로 반환")
+	@ApiOperation("전체 카테고리조회.  list구조로 반환")
 	@GetMapping(value = "/category")
 	public ResponseEntity<Map<String, Object>> getCategoryAll() {
 		
 		try {
-			return responseService.handleSuccess(null);
+			return responseService.handleSuccess(categoryService.getAllCategory());
 		}catch (Exception e) {
-			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
+			return responseService.handleFail(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class CategoryController {
 			categoryService.deleteCategory(id);
 			return responseService.handleSuccess(id+" 카테고리 삭제 완료.");
 		}catch (Exception e) {
-			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
+			return responseService.handleFail(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class CategoryController {
 		try {
 			return responseService.handleSuccess(categoryService.updateCategory(id, categoryDto)+" 카테고리 업데이트 완료.");
 		}catch (Exception e) {
-			return responseService.handleFail(e.toString(), HttpStatus.BAD_REQUEST); 
+			return responseService.handleFail(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 }

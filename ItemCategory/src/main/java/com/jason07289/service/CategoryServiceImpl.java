@@ -1,6 +1,8 @@
 package com.jason07289.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.transaction.Transactional;
@@ -85,6 +87,18 @@ public class CategoryServiceImpl implements CategoryService {
         
 		return categoryRepository.save(category).getCategoryId();
 		
+	}
+
+	@Override
+	public List<CategoryDto> getAllCategory() {
+		
+		List<Category> categoryList = categoryRepository.findByLevel(1);
+		List<CategoryDto> CategoryDtoList = new ArrayList<CategoryDto>();
+		for(Category c : categoryList) {
+			CategoryDtoList.add(new CategoryDto(c));
+		}
+		
+		return CategoryDtoList;
 	}
 	
 	
