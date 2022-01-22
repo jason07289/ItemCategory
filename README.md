@@ -22,4 +22,4 @@ Spring Boot 8080 <br>
 ### 5. Version
 
 Spring Boot 2.6.2 <br>
-openjdk 11 <br>
+jdk 11 <br>
