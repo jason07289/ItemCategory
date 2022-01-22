@@ -17,9 +17,10 @@ class ItemCategoryApplicationTests {
 	@Autowired
 	private CategoryService categoryService;
 	
+	
 	@Order(1)
 	@Test 
-	void saveCategory() {
+	void saveCategoryCase2() {
 		
 		System.out.println("##################################");
 		System.out.println("############saveCategory 시작###########");
@@ -65,7 +66,7 @@ class ItemCategoryApplicationTests {
 
 	}
 	
-	@Order(2)
+	@Order(4)
 	@Test 
 	void getCategoryByCategoryId() {
 		
@@ -76,7 +77,7 @@ class ItemCategoryApplicationTests {
 	}
 	
 	
-	@Order(3)
+	@Order(2)
 	@Test
 	void deleteCategory() {
 		System.out.println("##################################");
@@ -86,7 +87,7 @@ class ItemCategoryApplicationTests {
 		
 	}
 	
-	@Order(4)
+	@Order(3)
 	@Test
 	void updateCategory() {
 		System.out.println("##################################");
@@ -104,8 +105,9 @@ class ItemCategoryApplicationTests {
 	void getAllCategory() {
 		
 		System.out.println("##################################");
-		System.out.println("############getAllCategory 동작 확인###########");
+		System.out.println("############getAllCategory 시작###########");
 		System.out.println(categoryService.getAllCategory());
+		System.out.println("############getAllCategory 종료###########");
 	}
 	
 	
