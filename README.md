@@ -9,7 +9,7 @@
 `cd target`
 
 `java -jar [jar file name]`
-- ex ` ItemCategory-0.0.1-SNAPSHOT.jar`
+- ex) `java -jar ItemCategory-0.0.1-SNAPSHOT.jar`
 
 ### 3. swagger
 
