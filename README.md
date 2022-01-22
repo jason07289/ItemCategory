@@ -6,7 +6,7 @@
 
 ### 2. jar execute
 
-`cd target`
+`cd target/`
 
 `java -jar [jar file name]`
 - ex) `java -jar ItemCategory-0.0.1-SNAPSHOT.jar`
