@@ -24,7 +24,7 @@ api 사용법 swagger에 명시
 
 ### 6. Port
 
-Spring Boot 8080 <br>
+Spring Boot: 8080 <br>
 
 ### 7. Version
 
