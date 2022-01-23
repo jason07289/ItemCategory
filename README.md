@@ -6,7 +6,7 @@
 ### 2. find maven file
 `cd ItemCategory/ItemCategory`
 
-### 3. Maven Jar Package
+### 3. Maven Jar Package (Build)
 
 `./mvnw clean package`
 
