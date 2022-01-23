@@ -19,7 +19,8 @@
 
 ### 5. swagger
 
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/swagger-ui/index.html  <br>
+api 사용법 swagger에 명시
 
 ### 6. Port
 
